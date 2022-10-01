@@ -168,7 +168,7 @@ function menorMayorEdad() {
 
     while (true) {
         edadPersona = window.prompt(" Digite su edad actual...");
-        if (esEntero(edadPersona) && edadPersona > 0) {
+        if (esEntero(edadPersona) && (edadPersona > 0 && edadPersona < 100)) {
             edadPersona = parseInt(edadPersona);
             break;
         }
