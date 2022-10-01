@@ -1,0 +1,36 @@
+body {
+    font-family: system-ui;
+    text-align: justify;
+    padding: 1rem 3rem;
+    background-color: #00AF91;
+}
+
+@media screen and (min-width: 768px) {
+    section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+section>div {
+    background-color: #E6F99D;
+    padding: 1rem;
+    box-shadow: 0 0 1rem hsl(0 0% 0% / 0.15);
+}
+
+div:has(h1) {
+    text-align: center;
+    background-color: #163172;
+    color: #F6F6F6;
+}
+
+
+div:has(p) {
+    background-color: #E6F99D;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}
