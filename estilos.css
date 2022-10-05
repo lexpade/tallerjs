@@ -4,32 +4,24 @@ body {
     padding: 1rem 3rem;
     background-color: #00AF91;
 }
-
 @media screen and (min-width: 768px) {
-    section {
+    section {        
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
     }
 }
-
 section>div {
     background-color: #E6F99D;
+    margin-top:  1rem;
     padding: 1rem;
-    box-shadow: 0 0 1rem hsl(0 0% 0% / 0.15);
 }
-
 div:has(h1) {
     text-align: center;
     background-color: #163172;
     color: #F6F6F6;
+    padding: 1rem;
 }
-
-
-div:has(p) {
-    background-color: #E6F99D;
-}
-
 button {
     display: block;
     margin: 0 auto;

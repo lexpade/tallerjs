@@ -30,12 +30,13 @@ function mayorCero() {
         }
     }
     let numero = parseInt(dato);
-    if (numero > 0)
-        console.log(numero + ' Es mayor que cero');
-    else
-        if (numero < 0)
+    if (noCero(numero)) {
+        if (numero > 0)
+            console.log(numero + ' Es mayor que cero');
+        else
             console.log(numero + ' Es menor que cero');
-        else console.log(numero + ' Es Cero');
+    }
+    else console.log(numero + ' Es Cero');
 
 }
 /*
@@ -57,7 +58,9 @@ function mostrarOperaciones() {
     console.log('La suma de los numeros es ' + (+num1 + +num2));
     console.log('La resta de los numeros es ' + (num1 - num2));
     console.log('La multiplicacion de los numeros es ' + (num1 * num2));
-    console.log('La division de los numeros es ' + (num1 / num2));
+    if (noCero(num2))
+        console.log('La division de los numeros es ' + (num1 / num2));
+    else console.log('La division de los numeros es indefinidad por... ' + num2);
 }
 
 /*
@@ -89,7 +92,10 @@ function opAritmetica() {
                 window.alert("La multiplicacion es" + num1 * num2);
                 break;
             case 4:
-                window.alert("La division es " + num1 / num2);
+
+                if (noCero(num2))
+                    window.alert("La division es " + num1 / num2);
+                else window.alert('La division de los numeros es indefinidad porque el divisor es... ' + num2);
                 break;
             case 5:
                 window.alert(num1 + " a la potencia de " + num2 + " es " + num1 ** num2);
@@ -131,11 +137,13 @@ function calcularEdad() {
             window.alert('Ponga bien la fecha, con numeros');
             continue;
         }
+
+        /* Condicional que comprueba que una fecha ingresada sea una fecha valida, sin contar años biciestos.*/
         if ((((mes < 8) && (((mes % 2 !== 0) && (dia > 0 && dia <= 31)) || ((mes % 2 === 0) && ((mes != 2 && dia > 0 && dia <= 30) || (mes == 2 && dia > 0 && dia <= 28))))) ||
             ((mes >= 8) && (((mes % 2 !== 0) && (dia > 0 && dia <= 30)) || ((mes % 2 === 0) && (mes != 2 && dia > 0 && dia <= 31))))) &&
             (mes > 0 && mes <= 12 && ano <= 2002))
             break;
-        else window.alert('Escriba bien la fecha dias hasta 31, mes hasta 12, año menor o igual que 2002');
+        else window.alert('Escriba bien la fecha: los dias hasta 31 o 30 según Mes,  el mes hasta 12, y el año debe ser menor o igual que 2002');
     }
 
     hoy = new Date();
@@ -187,7 +195,7 @@ function menorMayorEdad() {
 Octavo ejercicio
 */
 function cantidadLetras() {
-    const nombreCompleto = window.prompt(" Digite su nombre completo");
+    const nombreCompleto = window.prompt(" Digite su nombre completo", 'Pepito Perez');
     const sinEspacios = nombreCompleto.split(" ");
     const nombreJunto = sinEspacios.join('');
     console.log(nombreJunto);
@@ -218,7 +226,7 @@ function contar_PosNeg() {
     let entero = 1, valor;
     let positivoCuenta = 0, negativoCuenta = 0;
 
-    while (entero != 0) {
+    while (true) {
         valor = window.prompt(" digite numero");
         if (esEntero(valor))
             entero = parseInt(valor);
@@ -226,12 +234,13 @@ function contar_PosNeg() {
             window.alert("Ingrese un numero entero");
             continue;
         }
-        if (entero != 0) {
+        if (noCero(entero)) {
             if (entero > 0)
                 positivoCuenta++;
             else
                 negativoCuenta++;
         }
+        else break;
     }
     console.log("Cantidad de numeros positivos: " + positivoCuenta);
     console.log("Cantidad de numeros negativos: " + negativoCuenta);
@@ -240,21 +249,29 @@ function contar_PosNeg() {
 /*
 Duodecimo ejercicio
 */
-function nombreCaracteres(){ 
+function nombreCaracteres() {
 
     const listaNombres = window.prompt("Ingrese nombres separados por espacio: ");
     const nombresArreglo = listaNombres.split(" ");
     let nombre;
 
-    for (let i = 0; i < nombresArreglo.length; i++){
+    for (let i = 0; i < nombresArreglo.length; i++) {
         nombre = nombresArreglo[i];
         if (nombre.length > 6)
             console.log(nombre);
     }
     window.alert(nombresArreglo);
 }
-
+/*
+Funcion para validar si un valor string es un numero entero, devuelve true si es un valor de un numero entero.
+*/
 function esEntero(str) {
-    if (typeof str != "string") return false
+    if (typeof str != "string") return false;
     return !isNaN(str) && !isNaN(parseFloat(str)) && (str % 1 === 0)
+}
+/*
+Funcion para determinar si un numero es diferente a cero, devuelve true si es diferente
+*/
+function noCero(num) {
+    return (num != 0);
 }
